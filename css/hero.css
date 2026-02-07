@@ -1,0 +1,281 @@
+/* ============================================
+   Hero Section Styles - Marquee Redesign
+   ============================================ */
+
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #fcfbf9;
+    /* Cream/Light background */
+}
+
+/* Marquee Container */
+.hero__marquee {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5vh 0;
+    z-index: 1;
+    opacity: 0.4;
+    /* Faded background to let center pop */
+    filter: blur(2px);
+    /* Slight blur for depth */
+}
+
+/* Track Styles */
+.marquee__track {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.marquee__content {
+    display: flex;
+    gap: 4vw;
+    width: max-content;
+}
+
+/* Animation directions */
+.marquee__track--top .marquee__content {
+    animation: marquee-left 60s linear infinite;
+    /* Slower for background feel */
+}
+
+.marquee__track--bottom .marquee__content {
+    animation: marquee-right 65s linear infinite;
+}
+
+@keyframes marquee-left {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes marquee-right {
+    from {
+        transform: translateX(-50%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* Images */
+.marquee__content img {
+    height: 35vh;
+    /* Responsive height */
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(100%);
+    /* B&W for background */
+    opacity: 0.8;
+}
+
+/* Center Container */
+.hero__center-container {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Center Image Wrapper */
+.hero__center-image-wrapper {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin-bottom: -40px;
+    /* Overlap with text */
+    z-index: 1;
+}
+
+.hero__center-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    /* Circle shape */
+    border: 4px solid #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(2deg);
+    }
+
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+}
+
+/* Title Wrapper - Text overlaying/interacting with image */
+.hero__title-wrapper {
+    position: relative;
+    z-index: 2;
+    background: rgba(252, 251, 249, 0.85);
+    /* Semi-transparent backdrop */
+    padding: 2rem 3rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+    transform: translateY(20px);
+}
+
+/* Content Typography */
+.hero__title {
+    font-family: var(--font-serif);
+    font-size: var(--text-4xl);
+    /* Base size */
+    font-weight: 700;
+    color: var(--color-text-dark);
+    margin: 0;
+    line-height: 1.1;
+}
+
+@media (min-width: 768px) {
+    .hero__title {
+        font-size: var(--text-6xl);
+    }
+
+    .hero__center-image-wrapper {
+        width: 400px;
+        height: 400px;
+        margin-bottom: -60px;
+    }
+}
+
+/* Decoration */
+.hero__title .strikethrough {
+    position: relative;
+    display: inline-block;
+    color: #999;
+    margin-right: 0.2em;
+}
+
+.hero__title .strikethrough::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -5%;
+    width: 0;
+    /* Start width 0 for animation */
+    height: 3px;
+    background-color: var(--color-text-dark);
+    transform: rotate(-3deg);
+    opacity: 0.8;
+    animation: strike 0.5s ease-out 1.5s forwards;
+    /* Wait 1.5s, then strike */
+}
+
+@keyframes strike {
+    to {
+        width: 110%;
+    }
+}
+
+.hero__title .celebration {
+    display: block;
+    font-family: var(--font-script);
+    color: var(--color-accent-gold);
+    font-size: 1.5em;
+    /* Relative to hero title */
+    margin-top: 0.2em;
+    transform: rotate(-5deg);
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    /* Hidden initially */
+    animation: popIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 2.2s forwards;
+    /* Wait 2.2s (after strike), then appear */
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0) rotate(-15deg);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1) rotate(-5deg);
+        opacity: 1;
+    }
+}
+
+/* Scroll Indicator */
+.hero__scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    color: var(--color-text-dark);
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translate(-50%, 0);
+    }
+
+    50% {
+        transform: translate(-50%, 10px);
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .hero__marquee {
+        padding: 2vh 0;
+    }
+
+    .marquee__content img {
+        height: 20vh;
+        /* Smaller images on mobile */
+    }
+
+    .hero__title-wrapper {
+        width: 90%;
+        /* Wider overlay on mobile */
+        padding: 1.5rem;
+    }
+
+    .hero__title {
+        font-size: var(--text-3xl);
+    }
+
+    .hero__center-image-wrapper {
+        width: 220px;
+        height: 220px;
+        margin-bottom: -30px;
+    }
+}

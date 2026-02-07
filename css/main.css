@@ -1,0 +1,194 @@
+/* ============================================
+   The Party Edit - Main Styles
+   Design System & Base Styles
+   ============================================ */
+
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Dancing+Script:wght@400;700&display=swap');
+
+/* ============================================
+   CSS Custom Properties (Design Tokens)
+   ============================================ */
+:root {
+  /* Colors */
+  --color-background: #1a1a1a;
+  --color-background-light: #2a2a2a;
+  --color-accent-gold: #D4AF37;
+  --color-text-light: #ffffff;
+  --color-text-dark: #2a2a2a;
+  --color-overlay: rgba(0, 0, 0, 0.5);
+  --color-overlay-light: rgba(0, 0, 0, 0.3);
+  
+  /* Typography */
+  --font-serif: 'Playfair Display', serif;
+  --font-script: 'Dancing Script', cursive;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Font Sizes - Mobile First */
+  --text-xs: 0.75rem;    /* 12px */
+  --text-sm: 0.875rem;   /* 14px */
+  --text-base: 1rem;     /* 16px */
+  --text-lg: 1.125rem;   /* 18px */
+  --text-xl: 1.25rem;    /* 20px */
+  --text-2xl: 1.5rem;    /* 24px */
+  --text-3xl: 1.875rem;  /* 30px */
+  --text-4xl: 2.25rem;   /* 36px */
+  --text-5xl: 3rem;      /* 48px */
+  --text-6xl: 3.75rem;   /* 60px */
+  
+  /* Spacing */
+  --spacing-unit: 1rem;
+  --spacing-xs: calc(var(--spacing-unit) * 0.5);   /* 8px */
+  --spacing-sm: calc(var(--spacing-unit) * 0.75);  /* 12px */
+  --spacing-md: var(--spacing-unit);               /* 16px */
+  --spacing-lg: calc(var(--spacing-unit) * 1.5);   /* 24px */
+  --spacing-xl: calc(var(--spacing-unit) * 2);     /* 32px */
+  --spacing-2xl: calc(var(--spacing-unit) * 3);    /* 48px */
+  --spacing-3xl: calc(var(--spacing-unit) * 4);    /* 64px */
+  
+  /* Layout */
+  --max-width: 1200px;
+  --container-padding: var(--spacing-md);
+  
+  /* Transitions */
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 300ms ease-in-out;
+  --transition-slow: 500ms ease-in-out;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Tablet & Desktop Font Sizes */
+@media (min-width: 768px) {
+  :root {
+    --text-3xl: 2.25rem;  /* 36px */
+    --text-4xl: 3rem;     /* 48px */
+    --text-5xl: 4rem;     /* 64px */
+    --text-6xl: 5rem;     /* 80px */
+    --container-padding: var(--spacing-xl);
+  }
+}
+
+/* ============================================
+   CSS Reset & Base Styles
+   ============================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-serif);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--color-text-light);
+  background-color: var(--color-background);
+  overflow-x: hidden;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ============================================
+   Typography
+   ============================================ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--spacing-md);
+}
+
+h1 { font-size: var(--text-5xl); }
+h2 { font-size: var(--text-4xl); }
+h3 { font-size: var(--text-3xl); }
+h4 { font-size: var(--text-2xl); }
+h5 { font-size: var(--text-xl); }
+h6 { font-size: var(--text-lg); }
+
+p {
+  margin-bottom: var(--spacing-md);
+}
+
+a {
+  color: var(--color-accent-gold);
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+}
+
+a:hover, a:focus {
+  opacity: 0.8;
+}
+
+/* ============================================
+   Layout Utilities
+   ============================================ */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.section {
+  padding: var(--spacing-3xl) 0;
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+.text-center { text-align: center; }
+.text-script { font-family: var(--font-script); }
+.text-gold { color: var(--color-accent-gold); }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Image Utilities */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Lazy Loading Blur Effect */
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity var(--transition-slow);
+}
+
+img[loading="lazy"].loaded {
+  opacity: 1;
+}
