@@ -156,6 +156,85 @@ class TimelineProgress {
 }
 
 /**
+ * Lightbox Controller
+ * Opens full-screen view of timeline images on click
+ */
+class Lightbox {
+    constructor() {
+        this.imageWrappers = document.querySelectorAll('.timeline__image-wrapper');
+        if (this.imageWrappers.length > 0) {
+            this.init();
+        }
+    }
+
+    init() {
+        // Create lightbox structure
+        this.lightboxEl = document.createElement('div');
+        this.lightboxEl.classList.add('lightbox');
+        this.lightboxEl.setAttribute('role', 'dialog');
+        this.lightboxEl.setAttribute('aria-label', 'Imagen ampliada');
+        this.lightboxEl.innerHTML = `
+            <button class="lightbox__close" aria-label="Cerrar">&times;</button>
+            <div class="lightbox__content">
+                <img class="lightbox__image" src="" alt="">
+                <div class="lightbox__caption"></div>
+            </div>
+        `;
+        document.body.appendChild(this.lightboxEl);
+
+        this.closeBtn = this.lightboxEl.querySelector('.lightbox__close');
+        this.lightboxImg = this.lightboxEl.querySelector('.lightbox__image');
+        this.captionEl = this.lightboxEl.querySelector('.lightbox__caption');
+
+        // Add event listeners
+        this.imageWrappers.forEach(wrapper => {
+            wrapper.addEventListener('click', (e) => {
+                const img = wrapper.querySelector('.timeline__image');
+                if (img) {
+                    this.open(img.src, img.alt);
+                }
+            });
+        });
+
+        // Close when clicking close button or background overlay
+        this.closeBtn.addEventListener('click', () => this.close());
+        this.lightboxEl.addEventListener('click', (e) => {
+            if (e.target === this.lightboxEl) {
+                this.close();
+            }
+        });
+
+        // Close on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.lightboxEl.classList.contains('active')) {
+                this.close();
+            }
+        });
+    }
+
+    open(src, alt) {
+        this.lightboxImg.src = src;
+        this.lightboxImg.alt = alt;
+        this.captionEl.textContent = alt || '';
+        
+        // Hide caption if empty
+        if (!alt) {
+            this.captionEl.style.display = 'none';
+        } else {
+            this.captionEl.style.display = 'block';
+        }
+
+        this.lightboxEl.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Disable scroll
+    }
+
+    close() {
+        this.lightboxEl.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scroll
+    }
+}
+
+/**
  * Initialize all animations on DOM ready
  */
 document.addEventListener('DOMContentLoaded', () => {
@@ -171,7 +250,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize smooth scrolling
     initSmoothScroll();
 
-
+    // Initialize lightbox
+    new Lightbox();
 
     console.log('🎉 The Party Edit - Animations initialized');
 });
