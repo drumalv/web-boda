@@ -104,92 +104,7 @@ function initSmoothScroll() {
     });
 }
 
-/**
- * RSVP Modal Controller
- * Manages open/close transitions and form submission
- */
-class RSVPModal {
-    constructor() {
-        this.modal = document.getElementById('rsvp-modal');
-        this.triggers = document.querySelectorAll('.rsvp-trigger');
-        this.closeBtn = document.getElementById('modal-close');
-        this.backdrop = document.getElementById('modal-backdrop');
-        this.form = document.getElementById('rsvp-form');
-        this.formContent = document.getElementById('modal-form-content');
-        this.successContent = document.getElementById('modal-success-content');
 
-        if (this.modal && this.triggers.length > 0) {
-            this.closeMs = parseFloat(
-                getComputedStyle(document.documentElement).getPropertyValue('--modal-close-dur')
-            ) || 150;
-            this.init();
-        }
-    }
-
-    init() {
-        // Open trigger event listeners
-        this.triggers.forEach(trigger => {
-            trigger.addEventListener('click', () => this.open());
-        });
-
-        // Close triggers
-        if (this.closeBtn) {
-            this.closeBtn.addEventListener('click', () => this.close());
-        }
-        if (this.backdrop) {
-            this.backdrop.addEventListener('click', () => this.close());
-        }
-
-        // Close on ESC key
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && this.modal.classList.contains('is-open')) {
-                this.close();
-            }
-        });
-
-        // Form submission handling
-        if (this.form) {
-            this.form.addEventListener('submit', (e) => this.handleSubmit(e));
-        }
-    }
-
-    open() {
-        // Reset modal content state
-        if (this.formContent && this.successContent) {
-            this.formContent.style.display = 'block';
-            this.successContent.style.display = 'none';
-        }
-        if (this.form) {
-            this.form.reset();
-        }
-
-        this.modal.removeAttribute('aria-hidden');
-        this.modal.setAttribute('aria-modal', 'true');
-        this.modal.classList.remove('is-closing');
-        this.modal.classList.add('is-open');
-    }
-
-    close() {
-        this.modal.classList.remove('is-open');
-        this.modal.classList.add('is-closing');
-        this.modal.setAttribute('aria-hidden', 'true');
-        this.modal.removeAttribute('aria-modal');
-
-        setTimeout(() => {
-            this.modal.classList.remove('is-closing');
-        }, this.closeMs);
-    }
-
-    handleSubmit(e) {
-        e.preventDefault();
-
-        // Simulate form submission success
-        if (this.formContent && this.successContent) {
-            this.formContent.style.display = 'none';
-            this.successContent.style.display = 'flex';
-        }
-    }
-}
 
 /**
  * TimelineProgress Controller
@@ -256,8 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize smooth scrolling
     initSmoothScroll();
 
-    // Initialize RSVP Modal
-    new RSVPModal();
+
 
     console.log('🎉 The Party Edit - Animations initialized');
 });
