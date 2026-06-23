@@ -16,7 +16,7 @@
 .timeline__title {
     font-family: var(--font-serif);
     font-size: var(--text-4xl);
-    color: var(--color-text-light);
+    color: var(--color-text-dark);
     margin-bottom: var(--spacing-md);
 }
 
