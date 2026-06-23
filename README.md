@@ -70,7 +70,7 @@ web-boda/
 1. **El Big Bang** (Oct 2017) - Granada meeting
 2. **La Primera Cita** - Homemade dinner
 3. **Nuestra primera aventura** (2018) - Camino de Santiago
-4. **El 'No-Simulacro'** (Jun 2025) - Proposal with Luke
+4. **"Es broma... ¿no?"** (Jun 2025) - Proposal with Luke
 5. **¡Sí, quiero!** - CTA for guests
 
 ## 🖼️ Assets Needed
