@@ -11,13 +11,16 @@
    ============================================ */
 :root {
   /* Colors */
-  --color-background: #1a1a1a;
-  --color-background-light: #2a2a2a;
-  --color-accent-gold: #D4AF37;
+  --color-background: #FAF8F5; /* Cream Marfil suave */
+  --color-background-light: #F3EFE9; /* Beige lino suave */
+  --color-background-card: #ffffff; /* Blanco para tarjetas */
+  --color-accent-gold: #C5A880; /* Dorado refinado */
+  --color-accent-gold-hover: #b09167; /* Dorado hover */
   --color-text-light: #ffffff;
-  --color-text-dark: #2a2a2a;
-  --color-overlay: rgba(0, 0, 0, 0.5);
-  --color-overlay-light: rgba(0, 0, 0, 0.3);
+  --color-text-dark: #2F2E2C; /* Gris carbón cálido / espresso */
+  --color-text-muted: #7E7872; /* Bronce atenuado */
+  --color-overlay: rgba(250, 248, 245, 0.85); /* Capa crema semi-transparente */
+  --color-overlay-light: rgba(250, 248, 245, 0.5);
   
   /* Typography */
   --font-serif: 'Playfair Display', serif;
@@ -60,6 +63,13 @@
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+
+  /* Modal transitions (from transitions-dev) */
+  --modal-open-dur: 250ms;
+  --modal-close-dur: 150ms;
+  --modal-scale: 0.96;
+  --modal-scale-close: 0.96;
+  --modal-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Tablet & Desktop Font Sizes */
@@ -92,7 +102,7 @@ body {
   font-family: var(--font-serif);
   font-size: var(--text-base);
   line-height: 1.6;
-  color: var(--color-text-light);
+  color: var(--color-text-dark); /* Texto oscuro para fondo claro */
   background-color: var(--color-background);
   overflow-x: hidden;
 }
@@ -191,4 +201,241 @@ img[loading="lazy"] {
 
 img[loading="lazy"].loaded {
   opacity: 1;
+}
+
+/* ============================================
+   RSVP Modal Component (Premium Aesthetics)
+   ============================================ */
+.t-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md);
+}
+
+.modal__backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(250, 248, 245, 0.6); /* Soft cream glass overlay */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.modal__container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  background: var(--color-background-card);
+  border: 1px solid var(--color-accent-gold);
+  border-radius: 16px;
+  padding: var(--spacing-2xl) var(--spacing-xl);
+  box-shadow: 0 20px 50px rgba(47, 46, 44, 0.1);
+  z-index: 1001;
+  text-align: center;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal__close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: var(--text-3xl);
+  color: var(--color-accent-gold);
+  cursor: pointer;
+  line-height: 1;
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.modal__close:hover {
+  transform: scale(1.1);
+  color: var(--color-text-dark);
+}
+
+.modal__title {
+  margin-bottom: var(--spacing-xs);
+  font-size: var(--text-3xl);
+  font-family: var(--font-serif);
+  color: var(--color-text-dark);
+}
+
+.modal__subtitle {
+  font-size: var(--text-lg);
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-accent-gold);
+}
+
+/* Form Styling */
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  text-align: left;
+}
+
+.form__group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.form__group label {
+  font-size: var(--text-sm);
+  color: var(--color-accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: bold;
+}
+
+.form__group input[type="text"] {
+  background: #ffffff;
+  border: 1px solid rgba(47, 46, 44, 0.15);
+  border-radius: 6px;
+  padding: var(--spacing-sm);
+  color: var(--color-text-dark);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form__group input[type="text"]:focus {
+  outline: none;
+  border-color: var(--color-accent-gold);
+  box-shadow: 0 0 0 3px rgba(197, 168, 128, 0.2);
+}
+
+/* Chip Radio Buttons */
+.chips__group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-sm);
+}
+
+.chip {
+  cursor: pointer;
+  position: relative;
+}
+
+.chip input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.chip span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-sm);
+  background: rgba(47, 46, 44, 0.03);
+  border: 1px solid rgba(47, 46, 44, 0.1);
+  border-radius: 6px;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  color: var(--color-text-dark);
+  text-align: center;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.chip input:checked + span {
+  border-color: var(--color-accent-gold);
+  background: rgba(197, 168, 128, 0.12);
+  transform: translateY(-1px);
+  font-weight: 600;
+}
+
+.chip:hover span {
+  background: rgba(47, 46, 44, 0.06);
+}
+
+/* Custom Checkbox */
+.checkbox__group {
+  flex-direction: row;
+  align-items: center;
+  margin-top: var(--spacing-xs);
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox input {
+  cursor: pointer;
+  accent-color: var(--color-accent-gold);
+  width: 18px;
+  height: 18px;
+}
+
+.checkbox span {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  color: var(--color-text-dark);
+}
+
+.modal__submit-btn {
+  margin-top: var(--spacing-sm);
+  background-color: var(--color-accent-gold);
+  color: var(--color-background);
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: var(--text-base);
+  padding: var(--spacing-sm) var(--spacing-xl);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.modal__submit-btn:hover {
+  background-color: var(--color-accent-gold-hover);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Success State Inside Modal */
+.modal__success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-xl) 0;
+}
+
+.success__icon {
+  font-size: 4rem;
+  animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes popIn {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.success__title {
+  font-family: var(--font-serif);
+  font-size: var(--text-2xl);
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-text-dark);
+}
+
+.success__text {
+  font-family: var(--font-sans);
+  color: var(--color-text-muted);
 }

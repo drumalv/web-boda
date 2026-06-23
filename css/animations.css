@@ -26,37 +26,71 @@
     }
 }
 
-/* Scroll Reveal Animations - For Timeline Items */
+/* Scroll Reveal Animations - For Timeline & Details Items */
 .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transform: translateY(40px) scale(0.97) rotateX(5deg);
+    transform-origin: bottom center;
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), 
+                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    perspective: 1000px;
 }
 
 .reveal.revealed {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1) rotateX(0deg);
 }
 
 /* Stagger Effect for Multiple Items */
-.reveal:nth-child(1) {
-    transition-delay: 0s;
+.reveal:nth-child(1) { transition-delay: 0.05s; }
+.reveal:nth-child(2) { transition-delay: 0.15s; }
+.reveal:nth-child(3) { transition-delay: 0.25s; }
+.reveal:nth-child(4) { transition-delay: 0.35s; }
+.reveal:nth-child(5) { transition-delay: 0.45s; }
+
+/* Shimmer / Brillo effect for CTA buttons */
+.timeline__cta-button,
+.rsvp__button,
+.modal__submit-btn {
+    position: relative;
+    overflow: hidden;
 }
 
-.reveal:nth-child(2) {
-    transition-delay: 0.1s;
+.timeline__cta-button::after,
+.rsvp__button::after,
+.modal__submit-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0) 30%,
+        rgba(255, 255, 255, 0.45) 50%,
+        rgba(255, 255, 255, 0) 70%
+    );
+    transform: rotate(45deg);
+    transition: none;
+    opacity: 0;
+    pointer-events: none;
 }
 
-.reveal:nth-child(3) {
-    transition-delay: 0.2s;
+.timeline__cta-button:hover::after,
+.rsvp__button:hover::after,
+.modal__submit-btn:hover::after {
+    animation: button-shimmer 1.8s infinite;
+    opacity: 1;
 }
 
-.reveal:nth-child(4) {
-    transition-delay: 0.3s;
-}
-
-.reveal:nth-child(5) {
-    transition-delay: 0.4s;
+@keyframes button-shimmer {
+    0% {
+        left: -70%;
+    }
+    100% {
+        left: 120%;
+    }
 }
 
 /* Fade In Animation */
@@ -118,4 +152,35 @@
 /* Remove will-change after animation completes */
 .animation-complete {
     will-change: auto;
+}
+
+/* Modal Open/Close Transitions (from transitions-dev) */
+.t-modal {
+  transform-origin: center;
+  transform: scale(var(--modal-scale));
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform var(--modal-open-dur) var(--modal-ease),
+    opacity   var(--modal-open-dur) var(--modal-ease);
+  will-change: transform, opacity;
+}
+.t-modal.is-open {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+.t-modal.is-closing {
+  transform: scale(var(--modal-scale-close));
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform var(--modal-close-dur) var(--modal-ease),
+    opacity   var(--modal-close-dur) var(--modal-ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .t-modal {
+    transition: none !important;
+  }
 }

@@ -197,9 +197,9 @@
               No era broma. Anillo guardado, Luke aceptando su rol secundario...<br>
               <strong>¿Os sumáis a la fiesta?</strong>
             </p>
-            <a href="#rsvp" class="timeline__cta-button">
+            <button class="timeline__cta-button rsvp-trigger" style="border: none; cursor: pointer;">
               ¡Cuenta conmigo!
-            </a>
+            </button>
           </div>
         </article>
 
@@ -219,7 +219,7 @@
 
       <div class="details__grid">
         <!-- 1. Location / Map -->
-        <article class="details__item">
+        <article class="details__item reveal">
           <div class="details__icon">📍</div>
           <h3 class="details__title">Ubicación</h3>
           <p class="details__text">
@@ -234,7 +234,7 @@
         </article>
 
         <!-- 2. Date & Time -->
-        <article class="details__item">
+        <article class="details__item reveal">
           <div class="details__icon">📅</div>
           <h3 class="details__title">Fecha y Hora</h3>
           <p class="details__text">
@@ -247,7 +247,7 @@
         </article>
 
         <!-- 3. Dress Code -->
-        <article class="details__item">
+        <article class="details__item reveal">
           <div class="details__icon">👗</div>
           <h3 class="details__title">Dress Code</h3>
           <p class="details__text">
@@ -269,12 +269,69 @@
       <p class="rsvp__text">
         Por favor, confirmanos antes del <strong>20 de Agosto</strong> para que podamos organizarlo todo.
       </p>
-      <!-- Placeholder for actual form or email link -->
-      <a href="mailto:novios@palomayalvaro.com?subject=Confirmación%20Boda" class="rsvp__button">
+      <!-- Interactive form triggers modal -->
+      <button class="rsvp__button rsvp-trigger" style="border: none; cursor: pointer;">
         Confirmar Asistencia
-      </a>
+      </button>
     </div>
   </section>
+
+  <!-- RSVP Modal Dialog (Transitions.dev) -->
+  <div id="rsvp-modal" class="t-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-title">
+    <div class="modal__backdrop" id="modal-backdrop"></div>
+    <div class="modal__container">
+      <button class="modal__close" id="modal-close" aria-label="Cerrar modal">&times;</button>
+      
+      <!-- Form state -->
+      <div id="modal-form-content">
+        <h2 id="modal-title" class="modal__title">Confirmar Asistencia</h2>
+        <p class="modal__subtitle text-gold text-script" style="margin-bottom: var(--spacing-md);">Paloma & Álvaro</p>
+        
+        <form id="rsvp-form" class="modal__form">
+          <div class="form__group">
+            <label for="rsvp-name">Nombre y Apellidos</label>
+            <input type="text" id="rsvp-name" required placeholder="Tu nombre completo">
+          </div>
+          
+          <div class="form__group">
+            <label>¿Asistirás?</label>
+            <div class="chips__group">
+              <label class="chip">
+                <input type="radio" name="attendance" value="yes" checked>
+                <span>Sí, ¡allí estaré! 🎉</span>
+              </label>
+              <label class="chip">
+                <input type="radio" name="attendance" value="no">
+                <span>No podré asistir 😢</span>
+              </label>
+            </div>
+          </div>
+          
+          <div class="form__group">
+            <label for="rsvp-diet">Restricciones alimentarias</label>
+            <input type="text" id="rsvp-diet" placeholder="Ej. Sin gluten, vegano, alergias...">
+          </div>
+          
+          <div class="form__group checkbox__group">
+            <label class="checkbox">
+              <input type="checkbox" id="rsvp-bus" value="yes">
+              <span>Necesito autobús 🚌</span>
+            </label>
+          </div>
+          
+          <button type="submit" class="modal__submit-btn">Enviar Confirmación</button>
+        </form>
+      </div>
+
+      <!-- Success state (initially hidden) -->
+      <div id="modal-success-content" class="modal__success" style="display: none;">
+        <div class="success__icon">🎉</div>
+        <h2 class="success__title">¡Confirmado!</h2>
+        <p class="success__text">Tu asistencia ha sido registrada con éxito.</p>
+        <p class="success__text text-gold text-script" style="font-size: 1.5rem; margin-top: 1rem;">¡Nos vemos pronto!</p>
+      </div>
+    </div>
+  </div>
 
   <!-- JavaScript -->
   <script src="./js/lazyload.js"></script>
