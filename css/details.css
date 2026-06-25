@@ -139,21 +139,23 @@
 
 .rsvp__bg-image {
     position: absolute;
-    bottom: -8px;
-    right: -8px;
-    width: 80px;
+    bottom: -15px;
+    right: 0;
+    width: 25%;
+    max-width: 180px;
+    min-width: 110px;
     height: auto;
     opacity: 0.25;
     filter: grayscale(10%) contrast(0.95);
     pointer-events: none;
     z-index: 1;
-    transform: rotate(-8deg);
+    transform: rotate(-6deg);
     transition: opacity var(--transition-base), transform var(--transition-base);
 }
 
 .rsvp__container:hover .rsvp__bg-image {
     opacity: 0.4;
-    transform: scale(1.1) rotate(-3deg) translate(-2px, -2px);
+    transform: scale(1.05) rotate(-3deg) translate(-3px, -3px);
 }
 
 .rsvp__text {
