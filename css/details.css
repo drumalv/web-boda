@@ -209,3 +209,11 @@
     border-color: #2e7d32;
     color: #fff;
 }
+
+/* Image support inside details__icon */
+.details__icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
