@@ -26,9 +26,9 @@
     justify-content: space-between;
     padding: 5vh 0;
     z-index: 1;
-    opacity: 0.4;
+    opacity: 0.5;
     /* Faded background to let center pop */
-    filter: blur(2px);
+    filter: blur(1px);
     /* Slight blur for depth */
 }
 
@@ -50,12 +50,12 @@
 
 /* Animation directions */
 .marquee__track--top .marquee__content {
-    animation: marquee-left 40s linear infinite;
+    animation: marquee-left 28s linear infinite;
     /* Slower for background feel */
 }
 
 .marquee__track--bottom .marquee__content {
-    animation: marquee-right 43s linear infinite;
+    animation: marquee-right 30s linear infinite;
 }
 
 @keyframes marquee-left {
