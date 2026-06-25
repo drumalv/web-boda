@@ -15,9 +15,16 @@
     margin-top: var(--spacing-xl);
 }
 
-@media (min-width: 900px) {
+@media (min-width: 600px) {
     .details__grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+        align-items: stretch;
+    }
+}
+
+@media (min-width: 1024px) {
+    .details__grid {
+        grid-template-columns: repeat(4, 1fr);
         align-items: stretch; /* Cards equal height */
         gap: var(--spacing-2xl);
     }
