@@ -298,14 +298,38 @@
        DUDAS SECTION
        ============================================ -->
   <section class="dudas section" id="dudas" style="padding-top: 0; padding-bottom: var(--spacing-3xl);">
-    <div class="rsvp__container reveal" style="display: flex; flex-direction: column; align-items: center; gap: var(--spacing-md); text-align: center;">
-      <div class="details__icon" style="margin-bottom: 0; width: 110px; height: 110px;">
-        <img src="./assets/images/luke-dudas.jpg" alt="Luke" loading="lazy">
+    <div class="container">
+      <div class="dudas__grid">
+        <!-- Card 1: ¿Alguna duda? -->
+        <div class="rsvp__container reveal" style="margin: 0; width: 100%; display: flex; flex-direction: column; align-items: center; gap: var(--spacing-md); text-align: center;">
+          <div class="details__icon" style="margin-bottom: 0; width: 110px; height: 110px;">
+            <img src="./assets/images/luke-dudas.jpg" alt="Luke" loading="lazy">
+          </div>
+          <h3 class="details__title" style="margin-bottom: 0; font-size: var(--text-2xl);">¿Alguna duda?</h3>
+          <p class="rsvp__text" style="margin-bottom: 0; max-width: 600px;">
+            Si tienes alguna consulta adicional, no dudes en ponerte en contacto con nosotros.
+          </p>
+        </div>
+
+        <!-- Card 2: Regalo de boda -->
+        <div class="rsvp__container reveal" style="margin: 0; width: 100%; display: flex; flex-direction: column; align-items: center; gap: var(--spacing-md); text-align: center;">
+          <div class="details__icon" style="margin-bottom: 0; width: 110px; height: 110px;">
+            <img src="./assets/images/luke-regalo.jpg" alt="Luke" loading="lazy">
+          </div>
+          <h3 class="details__title" style="margin-bottom: 0; font-size: var(--text-2xl);">Regalo de Boda</h3>
+          <p class="rsvp__text" style="margin-bottom: 0; max-width: 600px;">
+            Tu presencia es nuestro mejor regalo, pero si quieres tener un detalle con nosotros, te dejamos nuestra cuenta bancaria:
+          </p>
+          <div class="details__phone-container" style="max-width: 100%; width: auto; margin-top: 0.25rem;">
+            <span class="details__phone-link" style="font-family: var(--font-sans); font-weight: 600; font-size: 0.95rem; user-select: all;">
+              ES29 1583 0001 1991 5920 1129
+            </span>
+            <button class="details__copy-btn" onclick="copyToClipboard('ES2915830001199159201129', this)" title="Copiar cuenta" aria-label="Copiar cuenta bancaria">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="copy-icon"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            </button>
+          </div>
+        </div>
       </div>
-      <h3 class="details__title" style="margin-bottom: 0; font-size: var(--text-2xl);">¿Alguna duda?</h3>
-      <p class="rsvp__text" style="margin-bottom: 0; max-width: 600px;">
-        Si tienes alguna consulta adicional, no dudes en ponerte en contacto con nosotros.
-      </p>
     </div>
   </section>
 
