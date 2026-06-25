@@ -50,12 +50,12 @@
 
 /* Animation directions */
 .marquee__track--top .marquee__content {
-    animation: marquee-left 60s linear infinite;
+    animation: marquee-left 40s linear infinite;
     /* Slower for background feel */
 }
 
 .marquee__track--bottom .marquee__content {
-    animation: marquee-right 65s linear infinite;
+    animation: marquee-right 43s linear infinite;
 }
 
 @keyframes marquee-left {
