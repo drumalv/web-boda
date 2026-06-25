@@ -154,3 +154,59 @@
     box-shadow: 0 8px 25px rgba(197, 168, 128, 0.5);
     opacity: 1;
 }
+
+/* Telephone & Copy styles for '¿Quieres sorprendernos?' card */
+.details__phone-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+    padding: var(--spacing-xs) var(--spacing-md);
+    background: rgba(197, 168, 128, 0.05);
+    border-radius: 30px;
+    border: 1px dashed rgba(197, 168, 128, 0.2);
+    width: 100%;
+    max-width: 250px;
+}
+
+.details__phone-link {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: var(--text-sm);
+    color: var(--color-text-dark) !important;
+    transition: color var(--transition-fast);
+}
+
+.details__phone-link:hover {
+    color: var(--color-accent-gold) !important;
+    opacity: 1;
+}
+
+.details__copy-btn {
+    background: none;
+    border: 1px solid rgba(197, 168, 128, 0.4);
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-accent-gold);
+    padding: 3px 10px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: all var(--transition-fast);
+}
+
+.details__copy-btn:hover {
+    background-color: var(--color-accent-gold);
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.details__copy-btn.copied {
+    background-color: #2e7d32;
+    border-color: #2e7d32;
+    color: #fff;
+}

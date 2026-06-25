@@ -264,6 +264,14 @@
           <p class="details__text">
             Si tienes pensado participar con algún discurso o sorpresa para el gran día, ¡el micro es tuyo! Ponte en contacto con nuestro <em>Dúo Gadir</em> para coordinarlo.
           </p>
+          <div class="details__phone-container">
+            <a href="tel:+34686070585" class="details__phone-link" title="Llamar a Manu">
+              📞 686 07 05 85 (Manu)
+            </a>
+            <button class="details__copy-btn" onclick="copyToClipboard('686070585', this)" title="Copiar al portapapeles" aria-label="Copiar teléfono">
+              <span>Copiar</span>
+            </button>
+          </div>
         </article>
       </div>
     </div>
@@ -288,6 +296,21 @@
   <!-- JavaScript -->
   <script src="./js/lazyload.js"></script>
   <script src="./js/animations.js"></script>
+  <script>
+    function copyToClipboard(text, btnElement) {
+      navigator.clipboard.writeText(text).then(() => {
+        const originalContent = btnElement.innerHTML;
+        btnElement.innerHTML = '✓ Copiado';
+        btnElement.classList.add('copied');
+        setTimeout(() => {
+          btnElement.innerHTML = originalContent;
+          btnElement.classList.remove('copied');
+        }, 2000);
+      }).catch(err => {
+        console.error('Error al copiar: ', err);
+      });
+    }
+  </script>
 </body>
 
 </html>
